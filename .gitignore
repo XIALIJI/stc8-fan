@@ -1,0 +1,13 @@
+# Keil C51 build products (not committed)
+*.OBJ
+*.LST
+*.M51
+*.hex
+
+# build output directory (regenerate with build.cmd)
+build/
+
+# OS noise
+Thumbs.db
+.DS_Store
+*~
