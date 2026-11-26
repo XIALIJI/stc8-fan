@@ -1,12 +1,22 @@
 #include "bs_sc8h25a_seg_tm1650.h"
 #include "cs_stc8h_i2c_soft.h"
+#include "stc8h_delay.h"
 
 /* TM1650 4-digit display via software I2C (P1.4 SDA / P1.5 SCL).
- * digit1 = rightmost (units). Verify command bytes against the module on board. */
+ *
+ * Protocol (I2C):
+ *   slave address byte : 0x48  (= 0x24 << 1, write)
+ *   display registers  : 0x68 -> 0x6B, DIG1 is the LEFTMOST digit, auto-increment
+ *   display control    : 0x48 | (brightness << 1) | display_on
+ *
+ * s_buf[0] holds the RIGHTMOST (units) digit, so the bytes are sent in reverse
+ * order: s_buf[3] goes to 0x68 first. */
 
-#define TM1650_CMD_DATA    0x48
-#define TM1650_ADDR_DIG1   0x68
-#define TM1650_CMD_CTRL    0x44
+#define TM1650_I2C_ADDR    0x48     /* 7-bit 0x24 << 1 */
+#define TM1650_REG_DIG1    0x68     /* leftmost digit register */
+#define TM1650_BRIGHT      7        /* 0..7 */
+#define TM1650_CTRL_OFF    0x48
+#define TM1650_CTRL_ON     (0x48 | ((TM1650_BRIGHT & 0x07) << 1) | 0x01)
 
 #define SEG_DP             0x80
 
@@ -18,27 +28,33 @@ static u8 code SEG_NUM[10] =
     0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F
 };
 
+/* push s_buf[0..3] to the display registers */
 static void tm_refresh(void)
 {
+    u8 tmp[5];
     u8 i;
-    cs_i2c_start(); cs_i2c_send_byte(TM1650_CMD_DATA); cs_i2c_stop();
-    cs_i2c_start(); cs_i2c_send_byte(TM1650_ADDR_DIG1);
+
+    tmp[0] = TM1650_REG_DIG1;
     for (i = 0; i < 4; i++)
     {
-        u8 s = s_buf[i];
-        if (s_dp & (u8)(1 << i)) s |= SEG_DP;
-        cs_i2c_send_byte(s);
+        tmp[1 + i] = s_buf[3 - i];                  /* DIG1 = leftmost */
+        if (s_dp & (u8)(1 << (3 - i))) tmp[1 + i] |= SEG_DP;
     }
-    cs_i2c_stop();
+    (void)cs_i2c_write(TM1650_I2C_ADDR, tmp, 5);
 }
 
 void SegTM1650_Init(void)
 {
+    u8 cmd;
+
     cs_i2c_soft_init();
+    Delay_ms(50);                                   /* power-on settle */
+
+    cmd = (u8)TM1650_CTRL_ON;                       /* display on, max brightness */
+    (void)cs_i2c_write(TM1650_I2C_ADDR, &cmd, 1);
+
     s_dp = 0;
     SegTM1650_Clear();
-    cs_i2c_start(); cs_i2c_send_byte(TM1650_CMD_DATA); cs_i2c_stop();
-    cs_i2c_start(); cs_i2c_send_byte(TM1650_CMD_CTRL); cs_i2c_stop();
 }
 
 void SegTM1650_Clear(void)

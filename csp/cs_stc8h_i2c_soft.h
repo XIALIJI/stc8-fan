@@ -8,7 +8,8 @@
 void cs_i2c_soft_init(void);
 void cs_i2c_start(void);
 void cs_i2c_stop(void);
-void cs_i2c_send_byte(u8 dat);
+u8   cs_i2c_send_byte(u8 dat);              /* returns 0 = ACK, 1 = NACK */
+u8   cs_i2c_write(u8 slave_addr, u8 *buf, u8 len);  /* START+addr+buf+STOP */
 u8   cs_i2c_read_byte(u8 ack);      /* ack:1=send ACK, 0=send NACK */
 u8   cs_i2c_wait_ack(void);         /* returns 0 = ACK received    */
 void cs_i2c_ack(void);

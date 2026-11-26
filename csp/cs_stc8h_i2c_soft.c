@@ -36,9 +36,10 @@ void cs_i2c_stop(void)
     I2C_SDA_SET(); i2c_delay();
 }
 
-void cs_i2c_send_byte(u8 dat)
+/* send 8 bits then clock the 9th slot and sample ACK: 0 = ACK, 1 = NACK */
+u8 cs_i2c_send_byte(u8 dat)
 {
-    u8 i;
+    u8 i, ack;
     for (i = 0; i < 8; i++)
     {
         if (dat & 0x80) I2C_SDA_SET(); else I2C_SDA_CLR();
@@ -47,6 +48,27 @@ void cs_i2c_send_byte(u8 dat)
         I2C_SCL_CLR(); i2c_delay();
         dat <<= 1;
     }
+    I2C_SDA_SET(); i2c_delay();      /* release SDA for slave ACK */
+    I2C_SCL_SET(); i2c_delay();
+    ack = I2C_SDA_READ();
+    I2C_SCL_CLR(); i2c_delay();
+    return ack;
+}
+
+/* one transaction: START + slave addr + len bytes + STOP. 0=ok, 1=NACK */
+u8 cs_i2c_write(u8 slave_addr, u8 *buf, u8 len)
+{
+    u8 i, ack;
+    cs_i2c_start();
+    ack = cs_i2c_send_byte(slave_addr);
+    if (ack) { cs_i2c_stop(); return 1; }
+    for (i = 0; i < len; i++)
+    {
+        ack = cs_i2c_send_byte(buf[i]);
+        if (ack) { cs_i2c_stop(); return 1; }
+    }
+    cs_i2c_stop();
+    return 0;
 }
 
 u8 cs_i2c_wait_ack(void)
