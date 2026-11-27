@@ -9,7 +9,8 @@
 
 static void i2c_delay(void)
 {
-    _nop_(); _nop_(); _nop_(); _nop_();
+    u8 k;
+    for (k = 0; k < 30; k++) { _nop_(); }   /* ~1.2us @24MHz, about 200kHz I2C */
 }
 
 void cs_i2c_soft_init(void)

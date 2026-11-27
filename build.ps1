@@ -18,6 +18,7 @@ $extra["2.5"] = @("csp\cs_stc8h_i2c_soft.c", "bsp\m_servo.c", "bsp\bs_sc8h25a_ke
 $extra["2.6"] = @("csp\cs_stc8h_i2c_soft.c", "bsp\bs_sc8h25a_led_ws2812b.c", "bsp\bs_sc8h25a_key.c", "bsp\bs_sc8h25a_seg_tm1650.c", "example\2.6ws2812b_level\user_ws2812b_level.c")
 $extra["2.7"] = @("csp\cs_stc8h_eeprom.c", "csp\cs_stc8h_i2c_soft.c", "bsp\bs_sc8h25a_key.c", "bsp\bs_sc8h25a_led.c", "bsp\bs_sc8h25a_seg_tm1650.c", "example\2.7eeprom_temp\user_eeprom_temp.c")
 $extra["2.8"] = @("csp\cs_stc8h_pwm.c", "csp\cs_stc8h_i2c_soft.c", "bsp\m_motor.c", "bsp\bs_sc8h25a_temp_ds18b20.c", "bsp\bs_sc8h25a_led_ws2812b.c", "bsp\bs_sc8h25a_key.c", "bsp\bs_sc8h25a_led.c", "bsp\bs_sc8h25a_seg_tm1650.c", "user\user_fan_manual.c")
+$extra["diag"] = @("csp\cs_stc8h_uart.c", "csp\cs_stc8h_i2c_soft.c", "example\diag\user_diag.c")
 $extra["3"]   = @("csp\cs_stc8h_pwm.c", "csp\cs_stc8h_adc.c", "csp\cs_stc8h_eeprom.c", "csp\cs_stc8h_i2c_soft.c",
                    "bsp\m_motor.c", "bsp\m_servo.c", "bsp\m_sonar.c",
                    "bsp\bs_sc8h25a_temp_ds18b20.c", "bsp\bs_sc8h25a_led_ws2812b.c", "bsp\bs_sc8h25a_key.c", "bsp\bs_sc8h25a_led.c", "bsp\bs_sc8h25a_seg_tm1650.c",

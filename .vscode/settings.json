@@ -1,0 +1,16 @@
+{
+    // 统一编码，避免中文注释乱码
+    "files.encoding": "utf8",
+    // C51 老代码风格，别让编辑器自动格式化把代码改乱
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "files.associations": {
+        "*.h": "c",
+        "*.A51": "asm"
+    },
+    "files.exclude": {
+        "**/*.OBJ": true,
+        "**/*.LST": true,
+        "**/*.M51": true
+    }
+}

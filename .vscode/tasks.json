@@ -1,0 +1,115 @@
+{
+    // Ctrl+Shift+B = 编译实验 3（默认）
+    // 想编别的实验：Ctrl+Shift+P -> Run Task -> 选对应项
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "编译 实验 1.1",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "1.1"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 1.2",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "1.2"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.1",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.1"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.2",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.2"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.3",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.3"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.4",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.4"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.5",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.5"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.6",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.6"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.7",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.7"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 2.8",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "2.8"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "编译 实验 3",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "3"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "编译 实验 diag",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "build.ps1", "diag"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build"
+        }
+    ]
+}

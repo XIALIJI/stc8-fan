@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "STC8H (C51)",
+            "includePath": [
+                "${workspaceFolder}/csp",
+                "${workspaceFolder}/bsp",
+                "${workspaceFolder}/util",
+                "${workspaceFolder}/user",
+                "${workspaceFolder}/example/**"
+            ],
+            "defines": [
+                "MAIN_Fosc=24000000UL"
+            ],
+            "cStandard": "c89",
+            "intelliSenseMode": "windows-gcc-x86"
+        }
+    ],
+    "version": 4
+}
